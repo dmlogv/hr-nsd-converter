@@ -1,0 +1,15 @@
+version: '2'
+services:
+  db:
+    image: postgres:12.6
+    environment:
+      - POSTGRES_HOST_AUTH_METHOD=trust
+
+  app:
+    build: .
+    depends_on:
+      - db
+    volumes:
+    - ./data:/data
+    - ./output:/output
+    - ./datasources.yml:/datasources.yml
